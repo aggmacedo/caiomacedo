@@ -1,0 +1,863 @@
+/* ==========================================================================
+   Design System & Custom Properties
+   ========================================================================== */
+:root {
+    --bg-main: #0b0d12;
+    --bg-card: rgba(20, 24, 33, 0.65);
+    --bg-card-hover: rgba(28, 33, 46, 0.85);
+    --border-color: rgba(255, 255, 255, 0.06);
+    --border-color-hover: rgba(255, 255, 255, 0.12);
+    
+    /* Brand Colors */
+    --primary-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
+    --whatsapp-grad: linear-gradient(135deg, #128c7e 0%, #25d366 100%);
+    --instagram-grad: linear-gradient(135deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%);
+    
+    --color-text-main: #f3f4f6;
+    --color-text-muted: #9ca3af;
+    --color-text-highlight: #ffffff;
+    
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.35);
+    --shadow-glow-green: 0 0 20px rgba(37, 211, 102, 0.4);
+    
+    --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --border-radius: 20px;
+    --border-radius-sm: 12px;
+}
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-main);
+    color: var(--color-text-main);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    padding: 20px 16px 120px 16px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   Glow Orbs Background
+   ========================================================================== */
+.glow-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.15;
+    mix-blend-mode: screen;
+}
+
+.orb-1 {
+    top: -10%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: #6366f1;
+    animation: float-orb 15s infinite alternate ease-in-out;
+}
+
+.orb-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: #06b6d4;
+    animation: float-orb 20s infinite alternate-reverse ease-in-out;
+}
+
+.orb-3 {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40vw;
+    height: 40vw;
+    background: #a855f7;
+    opacity: 0.1;
+    animation: float-orb 25s infinite alternate ease-in-out;
+}
+
+@keyframes float-orb {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(8%, 8%) scale(1.15); }
+}
+
+/* ==========================================================================
+   Main Container Layout
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ==========================================================================
+   Header Component
+   ========================================================================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 4px;
+    width: 100%;
+}
+
+.logo {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-text-highlight);
+    letter-spacing: -0.5px;
+}
+
+.logo-accent {
+    background: var(--primary-grad);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.instagram-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.instagram-badge:hover {
+    color: var(--color-text-highlight);
+    border-color: rgba(238, 42, 123, 0.5);
+    background: rgba(238, 42, 123, 0.05);
+}
+
+.icon-small {
+    width: 14px;
+    height: 14px;
+}
+
+/* ==========================================================================
+   Premium Cards (Glassmorphism)
+   ========================================================================== */
+.card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 32px;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--border-color-hover);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.avatar-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-md);
+    background: #1f2937;
+}
+
+.avatar-container::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: var(--primary-grad);
+    z-index: -1;
+    animation: rotate-border 6s infinite linear;
+}
+
+@keyframes rotate-border {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.avatar-status {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #25d366;
+    border: 3px solid #0f1319;
+    box-shadow: 0 0 10px rgba(37, 211, 102, 0.7);
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(37, 211, 102, 0); }
+    100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 30px;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    color: #818cf8;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.main-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--color-text-highlight);
+    background: linear-gradient(to right, #ffffff, #e2e8f0, #94a3b8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    font-weight: 400;
+}
+
+/* CTA Buttons */
+.cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: 28px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 28px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--whatsapp-grad);
+    color: #ffffff;
+    border: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-green);
+    filter: brightness(1.1);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--color-text-highlight);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* ==========================================================================
+   About Me Section
+   ========================================================================== */
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-text-highlight);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.title-icon {
+    font-size: 1.5rem;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+.about-content p {
+    text-align: justify;
+}
+
+.experience-block {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.subsection-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text-highlight);
+    margin-bottom: 16px;
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    list-style: none;
+}
+
+@media (min-width: 480px) {
+    .experience-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.experience-grid li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+    font-weight: 500;
+}
+
+.bullet-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(6, 182, 212, 0.1);
+    color: #22d3ee;
+    flex-shrink: 0;
+}
+
+.bullet-icon svg {
+    width: 12px;
+    height: 12px;
+}
+
+.about-footer-text {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+/* ==========================================================================
+   Projects Section (Grid Layout)
+   ========================================================================== */
+.section-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-top: -12px;
+    margin-bottom: 24px;
+}
+
+.projects-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.projects-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #6366f1;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 640px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.project-card {
+    position: relative;
+    min-height: 200px;
+    background: linear-gradient(135deg, rgba(25, 30, 45, 0.8) 0%, rgba(20, 24, 33, 0.6) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    background: linear-gradient(135deg, rgba(30, 40, 60, 0.95) 0%, rgba(25, 30, 45, 0.8) 100%);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+}
+
+.project-card-content {
+    text-align: center;
+}
+
+.project-card-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-text-highlight);
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   Services Grid
+   ========================================================================== */
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+@media (min-width: 480px) {
+    .services-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: var(--border-radius-sm);
+    padding: 24px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(99, 102, 241, 0.2);
+    transform: translateY(-3px);
+}
+
+.service-icon-wrapper {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.web-grad { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+.app-grad { background: linear-gradient(135deg, #ec4899, #8b5cf6); }
+.sys-grad { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+.auto-grad { background: linear-gradient(135deg, #10b981, #3b82f6); }
+
+.service-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.service-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text-highlight);
+    margin-bottom: 8px;
+}
+
+.service-card p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Why Work With Me Section
+   ========================================================================== */
+.benefits-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.benefit-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.benefit-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.benefit-check svg {
+    width: 12px;
+    height: 12px;
+}
+
+.benefit-info h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-highlight);
+    margin-bottom: 4px;
+}
+
+.benefit-info p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Testimonials (Avaliações) Grid
+   ========================================================================== */
+.testimonials-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: var(--border-radius-sm);
+    position: relative;
+}
+
+.testimonial-card:hover {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.rating {
+    font-size: 0.8rem;
+    color: #eab308;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.testimonial-text {
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--color-text-main);
+    margin-bottom: 12px;
+}
+
+.client-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #818cf8;
+}
+
+/* ==========================================================================
+   Footer Component
+   ========================================================================== */
+.text-center { text-align: center; }
+.justify-center { justify-content: center; }
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 24px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 32px;
+}
+
+@media (min-width: 480px) {
+    .footer-links {
+        flex-direction: row;
+    }
+}
+
+.footer-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-btn {
+    background: #25d366;
+    color: #ffffff;
+}
+
+.whatsapp-btn:hover {
+    box-shadow: var(--shadow-glow-green);
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.instagram-btn {
+    background: rgba(255, 255, 255, 0.04);
+    color: #ffffff;
+    border: 1px solid var(--border-color);
+}
+
+.instagram-btn:hover {
+    background: var(--instagram-grad);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(238, 42, 123, 0.3);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.footer-bottom .tagline {
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: #6366f1;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   Floating Action WhatsApp Button
+   ========================================================================== */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--whatsapp-grad);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.45);
+    z-index: 999;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: bounce-attention 6s infinite;
+}
+
+.floating-whatsapp svg {
+    width: 28px;
+    height: 28px;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 10px 35px rgba(37, 211, 102, 0.6);
+}
+
+.floating-badge {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    background: #ef4444;
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 10px;
+    border: 2px solid #0b0d12;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@keyframes bounce-attention {
+    0%, 100%, 20%, 50%, 80% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.15s;
+}
+
+.delay-2 {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
